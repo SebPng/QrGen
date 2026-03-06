@@ -7,8 +7,8 @@ TARGET="$INSTALL_DIR/qrgen"
 
 echo "Downloading QRGen CLI..."
 
-# Use your rawAW_ file URL here
 RAW_URL="https://raw.githubusercontent.com/SebPng/QrGen/main/qrgen.py"
+
 if curl -L -o "$TARGET" "$RAW_URL"; then
     echo "Download successful!"
 else
