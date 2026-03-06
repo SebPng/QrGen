@@ -1,0 +1,29 @@
+#!/bin/bash
+
+INSTALL_DIR="$HOME/QRGenCLI"
+mkdir -p "$INSTALL_DIR"
+
+TARGET="$INSTALL_DIR/qrgen"
+
+echo "Downloading QRGen CLI..."
+RAW_URL="https://raw.githubusercontent.com/SebPng/QRGen/main/qrgen.py"
+
+# Download and rename to qrgen
+if curl -L -o "$TARGET" "$RAW_URL"; then
+    echo "Download successful!"
+else
+    echo "Failed to download QRGen. Check your internet or URL."
+    exit 1
+fi
+
+chmod +x "$TARGET"
+
+# Add to PATH if not already
+if ! grep -q "$INSTALL_DIR" "$HOME/.bashrc"; then
+    echo "export PATH=\"\$PATH:$INSTALL_DIR\"" >> "$HOME/.bashrc"
+    echo "Added $INSTALL_DIR to PATH. Restart terminal or run: source ~/.bashrc"
+fi
+
+echo "Installation complete!"
+echo "You can now run QRGen CLI like this:"
+echo "   qrgen 'Hello world!' --multi 2"
